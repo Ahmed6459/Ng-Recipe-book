@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DataStorageServiceService } from 'src/app/shared/data-storage-service.service';
 import { RecipeService } from '../recipe.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class RecipeEditComponent implements OnInit {
   editMode:boolean = false;
   recipeForm!:FormGroup
 
-  constructor(private route:ActivatedRoute, private reciprService:RecipeService, private router:Router) { }
+  constructor(private data:DataStorageServiceService,private route:ActivatedRoute, private reciprService:RecipeService, private router:Router) { }
 
   ngOnInit(): void {
 
@@ -103,6 +104,12 @@ export class RecipeEditComponent implements OnInit {
 
    RemoveIngrediantControl (i:number){
     (<FormArray>this.recipeForm.get('ingrediants')).removeAt(i)
+      }
+      
+      onAdd(){
+        console.log("aza");
+        
+        this.data.storeRecipes
       }
 
 
